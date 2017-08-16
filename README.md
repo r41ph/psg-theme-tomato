@@ -1,12 +1,16 @@
 ﻿# psg-theme-tomato
 
-TODO: Please write description.
+Theme for the [postcss-style-guide](https://github.com/morishitter/postcss-style-guide) plugin
+
+## Install
+
+```shell
+$ npm install psg-theme-tomato
+```
 
 ## Theme
 
-TODO: Please add a capture image.
-
-![Image of psg-theme-tomato](https://...)
+![Image of psg-theme-tomato](./psg-theme-tomato.png)
 
 ## License
 
