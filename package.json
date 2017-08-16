@@ -1,0 +1,10 @@
+{
+  "name": "psg-theme-tomato",
+  "version": "0.0.0",
+  "license": "MIT",
+  "keywords": [
+    "psg-theme"
+  ],
+  "files": [],
+  "dependencies": {}
+}

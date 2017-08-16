@@ -1,0 +1,129 @@
+<!-- Based on https://github.com/morishitter/psg-theme-default -->
+
+<!doctype html>
+<html class="psg-theme" lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title><%= projectName %></title>
+        <style><%- codeStyle %><%- tmplStyle %><%- processedCSS %></style>
+    </head>
+
+    <body>
+      <div class="psg-wrapper">
+      <div id="psg-nav-toggler" class="psg-nav-toggler">&#9776;</div>
+        <nav id="psg-menu" class="psg-menu">
+          <a href="" class="psg-logo">
+            <!-- <img
+              title="Philosopher’s stone, logo of PostCSS"
+              src="http://postcss.github.io/postcss/logo-leftp.svg"> -->
+          </a>
+
+          <ul class="psg-ComponentList">
+            <% if (Array.isArray(colorPalette) && colorPalette.length !== 0) { %>
+              <a href="#color-palette" class="psg-ComponentList__item">
+                <li>Color Palette</li>
+              </a>
+            <% } %>
+            <% maps.forEach(function (map) { %>
+              <% if (map.link.title !== null) { %>
+                <a href="#<%= map.link.id %>" class="psg-ComponentList__item">
+                  <li>
+                    <%= map.link.title %>
+                  </li>
+                </a>
+              <% } %>
+            <% }) %>
+          </ul>
+
+        </nav>
+
+        <div id="psg-main" class="psg-main">
+          <header class="psg-title">
+            <h1><%= projectName %></h1>
+          </header>
+
+          <div class="psg-container">
+            <% if (Array.isArray(colorPalette) && colorPalette.length !== 0) { %>
+              <section class="psg-section">
+                  <h2 id="color-palette" class="psg-component-title">Color Palette</h2>
+                  <div class="psg-contents">
+                    <div class="psg-colorPalette">
+                      <% colorPalette.forEach(function (palette) { %>
+                      <div class="psg-colorBox">
+                          <div class="psg-colorBox__sample" style="background-color: <%= palette.color %>">
+                          </div>
+                          <div class="psg-colorBox__name">
+                              <%= palette.name %><br>
+                              <%= palette.color %>
+                          </div>
+                      </div>
+                      <% }) %>
+                    </div>
+                  </div>
+              </section>
+            <% } %>
+            <% maps.forEach(function (map) { %>
+                <section class="psg-section">
+                    <h2 id="<%= map.link.id %>" class="psg-component-title"><%= map.link.title %></h2>
+                    <div class="psg-contents">
+                      <%- map.html %>
+                    </div>
+                </section>
+                <section class="psg-css-code psg-section">
+                <% if (showCode) { %>
+                    <button class="button-small button-tertiary psg-css-code-toggle">View CSS code</button>
+                    <pre class="psg-css-code-box" style="display: none;"><div><code class="lang-css"><%- map.rule %></code></div></pre>
+                <% } %>
+              </section>
+            <% }) %>
+          </div>
+
+        </div>
+      </div>
+
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // Remove empty titles
+            var emptyTitles = document.querySelectorAll('.psg-component-title');
+            for (var q = 0; q < emptyTitles.length; q++) {
+              // console.log("'" + emptyTitles[q].innerHTML + "'");
+                if (emptyTitles[q].innerHTML == "") {
+                    emptyTitles[q].style.display = "none";
+                }
+            }
+
+
+
+            // Toggle CSS code
+            var cssCodeToggle = document.querySelectorAll('.psg-css-code-toggle');
+            for (var i = 0; i < cssCodeToggle.length; i++) {
+                cssCodeToggle[i].addEventListener("click", function(e) {
+                    var sib = e.currentTarget.parentNode.querySelector('.psg-css-code-box');
+                    sib.style.display = sib.style.display == "none" ? "block" : "none";
+                }, false);
+            }
+
+            // Toggle navigation
+            var toggler = document.getElementById("psg-nav-toggler");
+            toggler.addEventListener("click", toggleNav);
+            
+            function toggleNav() {
+              var nav = document.getElementById("psg-menu");
+              var main = document.getElementById("psg-main");
+              var toggl = document.getElementById("psg-nav-toggler");
+              if ( nav.classList.contains('psg-menu-closed') ) {
+                    nav.classList.remove('psg-menu-closed');
+                    main.classList.remove('psg-menu-closed');
+                    toggl.classList.remove('psg-menu-closed');
+                  } else {
+                    nav.classList.add('psg-menu-closed');
+                    main.classList.add('psg-menu-closed');
+                    toggl.classList.add('psg-menu-closed');
+              };
+            }
+        });
+      </script>
+    </body>
+</html>
