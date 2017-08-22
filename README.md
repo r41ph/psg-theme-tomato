@@ -46,7 +46,7 @@ gulp.task('watch', () => {
 
 gulp.task('default', ['css']);
 ```
-CSS
+CSS - SCSS
 ```css
 // Color palette
 // No need of using Markup here, it can generate the 
