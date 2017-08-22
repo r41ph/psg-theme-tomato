@@ -46,6 +46,69 @@ gulp.task('watch', () => {
 
 gulp.task('default', ['css']);
 ```
+```css
+// Color palette
+// No need of using Markup here, it can generate the 
+// color palette from CSS Custom Properties with 
+// @start color and @end color annotations.
+$color-primary: #2E294E;
+$color-secondary: #EFBCD5;
+$color-tertiary: #BE97C6;
+$color-background: #8661C1;
+/* @start color */
+:root {
+    --primary: $color-primary;
+    --secondary: $color-secondary;
+    --tertiary: $color-tertiary;
+    --background: $color-background;
+}
+/* @end color */
+
+
+/*
+@styleguide
+@title Buttons
+Use the button classes on and `<a>`, `<button>`, `<input>` elements.
+#### => Sizes
+<button class="button-large">button-large</button><br>
+<button class="button-medium">button-medium</button><br>
+<button class="button-small">button-small</button>
+    <button class="button-large">button-large</button>
+    <button class="button-medium">button-medium</button>
+    <button class="button-small">button-small</button>
+*/
+
+.button {
+	display: block;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    background-color: #999;
+
+    &:hover {
+    	opacity: .8;
+    }
+}
+
+.button-large {
+	@extend .button;
+    padding: 20px 30px;
+    font-size: 16px;
+}
+
+.button-medium {
+	@extend .button;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.button-small {
+	@extend .button;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+```
 
 ## Theme
 
@@ -53,4 +116,4 @@ gulp.task('default', ['css']);
 
 ## License
 
-MIT © bar
+MIT
