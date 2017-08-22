@@ -4,12 +4,12 @@ Theme for the [postcss-style-guide](https://github.com/morishitter/postcss-style
 
 ## Install
 
-```shell
+```javascript
 $ npm install psg-theme-tomato
 ```
 ## Example
-
-```shell
+GULP
+```javascript
 var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
 var postcss = require('gulp-postcss');
@@ -46,6 +46,7 @@ gulp.task('watch', () => {
 
 gulp.task('default', ['css']);
 ```
+CSS
 ```css
 // Color palette
 // No need of using Markup here, it can generate the 
